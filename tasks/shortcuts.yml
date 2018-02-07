@@ -1,0 +1,9 @@
+- name: Install xbindkeys
+  package: name=xbindkeys
+  when: is_ubuntu
+- name: Install xdotool
+  package: name=xdotool
+  when: is_ubuntu
+- name: Install wmctrl
+  package: name=wmctrl
+  when: is_ubuntu
