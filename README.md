@@ -1,20 +1,15 @@
-# machine [![Build Status](https://travis-ci.org/caarlos0/machine.svg?branch=master)](https://travis-ci.org/caarlos0/machine) [![SayThanks.io](https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/caarlos0)
+# machine
 
-Machine setup, powered by Ansible.
+> Machine setup, powered by Ansible.
 
-I'm splitting my [dotfiles](https://github.com/caarlos0/dotfiles) repo
-in two repos:
+My [dotfiles](https://github.com/denolfe/dotfiles) were becoming slightly bloated having to worry about configuration *and* setup, so it made sense to split out the configuration into its own repo.
 
-- dotfiles now handles only configuration
-- machine (this) installs stuff (including my dotfiles)
+This setup is currently optimized for [elementary os](https://elementary.io/) but should still work for ubuntu xenial.
 
-For now, almost everything is a task, later I might migrate some of them
-to roles, so they can evolve separately and be used by other people as well.
-
-## Usage:
+## Usage
 
 ```console
-$ wget https://github.com/caarlos0/machine/archive/master.zip
+$ wget https://github.com/denolfe/machine/archive/master.zip
 $ unzip master.zip
 $ cd machine-master
 ```
@@ -25,4 +20,3 @@ out stuff you don't want, when you're done, simply run:
 ```console
 $ ./setup
 ```
-
