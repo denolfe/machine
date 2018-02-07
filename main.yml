@@ -4,9 +4,9 @@
     - is_ci: ansible_env.TRAVIS_JOB_ID is defined
     - isnt_ci: ansible_env.TRAVIS_JOB_ID is not defined
     - is_osx: ansible_os_family == 'Darwin'
-    - is_ubuntu: ansible_distribution == 'Ubuntu' or ansible_distribution == '\"elementary\"'
-    - is_eos: ansible_os_family == '\"elementary\"'
-    - dist_release: "{{ 'xenial' if is_ubuntu }}"
+    - is_ubuntu: ansible_distribution == 'Ubuntu' or ansible_distribution.find('elementary') != -1
+    - is_eos: ansible_os_family.find('elementary') != -1
+    - dist_release: "{{ 'xenial' if (ansible_distribution_release == 'xenial' or ansible_distribution_release == 'loki') }}"
 
   tasks:
     # essentials:
