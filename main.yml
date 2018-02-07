@@ -1,6 +1,6 @@
 - hosts: localhost
   vars:
-    - node_version: 7 
+    - node_version: 8
     - is_ci: ansible_env.TRAVIS_JOB_ID is defined
     - isnt_ci: ansible_env.TRAVIS_JOB_ID is not defined
     - is_osx: ansible_os_family == 'Darwin'
@@ -19,10 +19,8 @@
     # specific stuff than can be commented out
     #
     # editors, IDEs, terminals, etc
-    - include: tasks/atom.yml
     - include: tasks/diffmerge.yml
     - include: tasks/intellij.yml
-    - include: tasks/sublime-text.yml
     - include: tasks/terminal.yml
     - include: tasks/visual-studio-code.yml
 
@@ -30,14 +28,12 @@
     - include: tasks/chrome.yml
 
     # database
-    - include: tasks/dbeaver.yml
-    - include: tasks/postgres.yml
+    # - include: tasks/dbeaver.yml
+    # - include: tasks/postgres.yml
 
     # tools
     - include: tasks/awscli.yml
     - include: tasks/docker.yml
-    - include: tasks/ngrok.yml
-    - include: tasks/vpn.yml
 
     # languages
     - include: tasks/golang.yml
@@ -47,14 +43,11 @@
     - include: tasks/ruby.yml
 
     # backup
-    - include: tasks/dropbox.yml
-    - include: tasks/google-drive.yml
+    # - include: tasks/dropbox.yml
+    # - include: tasks/google-drive.yml
 
     # chat
-    - include: tasks/skype.yml
     - include: tasks/slack.yml
-    - include: tasks/telegram.yml
-    - include: tasks/whatsapp.yml
 
     # media
     - include: tasks/spotify.yml
