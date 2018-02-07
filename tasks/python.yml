@@ -1,6 +1,8 @@
-# TODO install pyenv on ubuntu too
-- name: Install Python
-  package: name=python
+# - name: Install Python
+  # package: name=python
+- name: Install Pip
+  package: name=python-pip
+  when: is_ubuntu
 - name: Install PyEnv
   package: name=pyenv
   when: is_osx

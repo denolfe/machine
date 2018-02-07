@@ -2,10 +2,10 @@
     repo: '{{ item }}'
     update_cache: no
   with_items:
-    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
-    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
-    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
-    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
+    - 'deb http://archive.ubuntu.com/ubuntu {{ dist_release }} multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ dist_release }} multiverse'
+    - 'deb http://archive.ubuntu.com/ubuntu {{ dist_release }}-updates multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ dist_release }}-updates multiverse'
   when: is_ubuntu
 
 - name: Update apt

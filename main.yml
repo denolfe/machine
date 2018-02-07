@@ -1,61 +1,41 @@
 - hosts: localhost
   vars:
-    - node_version: 7 
+    - node_version: 8
     - is_ci: ansible_env.TRAVIS_JOB_ID is defined
     - isnt_ci: ansible_env.TRAVIS_JOB_ID is not defined
     - is_osx: ansible_os_family == 'Darwin'
-    - is_ubuntu: ansible_distribution == 'Ubuntu'
-    - is_ubuntu13_plus: is_ubuntu and ansible_distribution_version|int >= 13
-    - is_ubuntu15_plus: is_ubuntu and ansible_distribution_version|int >= 15
+    - is_ubuntu: ansible_distribution == 'Ubuntu' or ansible_distribution == '\"elementary\"'
+    - dist_release: "{{ 'xenial' if is_ubuntu }}"
 
   tasks:
     # essentials:
     - include: tasks/apt.yml
     - include: tasks/homebrew.yml
     - include: tasks/core.yml
+    - include: tasks/fonts.yml
     - include: tasks/dotfiles.yml
 
-    #
-    # specific stuff than can be commented out
-    #
     # editors, IDEs, terminals, etc
-    - include: tasks/atom.yml
-    - include: tasks/diffmerge.yml
-    - include: tasks/intellij.yml
-    - include: tasks/sublime-text.yml
     - include: tasks/terminal.yml
     - include: tasks/visual-studio-code.yml
 
     # browsers
     - include: tasks/chrome.yml
 
-    # database
-    - include: tasks/dbeaver.yml
-    - include: tasks/postgres.yml
+    # languages
+    # - include: tasks/golang.yml
+    # - include: tasks/java.yml
+    - include: tasks/node.yml
+    - include: tasks/python.yml
+    # - include: tasks/ruby.yml
 
     # tools
     - include: tasks/awscli.yml
-    - include: tasks/docker.yml
-    - include: tasks/ngrok.yml
-    - include: tasks/vpn.yml
-
-    # languages
-    - include: tasks/golang.yml
-    - include: tasks/java.yml
-    - include: tasks/node.yml
-    - include: tasks/python.yml
-    - include: tasks/ruby.yml
-
-    # backup
-    - include: tasks/dropbox.yml
-    - include: tasks/google-drive.yml
+    # - include: tasks/docker.yml
 
     # chat
-    - include: tasks/skype.yml
     - include: tasks/slack.yml
-    - include: tasks/telegram.yml
-    - include: tasks/whatsapp.yml
 
     # media
     - include: tasks/spotify.yml
-    - include: tasks/vlc.yml
+    # - include: tasks/vlc.yml

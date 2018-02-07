@@ -1,12 +1,14 @@
 - name: Add Spotify apt keys
-  apt_key: keyserver=keyserver.ubuntu.com id=D2C19886
-  when: is_ubuntu15_plus
+  apt_key: keyserver=keyserver.ubuntu.com id={{ item }} state=present
+  with_items:
+    - 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+  when: is_ubuntu
 - name: Add Spotify repository
   apt_repository: repo='deb http://repository.spotify.com stable non-free'
-  when: is_ubuntu15_plus
+  when: is_ubuntu
 - name: Install Spotify
-  package: name=spotify-client
-  when: is_ubuntu15_plus
+  package: name=spotify-client update_cache=yes state=latest
+  when: is_ubuntu
 
 - name: Install Spotify
   homebrew_cask: name=spotify
