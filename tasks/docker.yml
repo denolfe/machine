@@ -2,10 +2,12 @@
   apt_key: url=https://apt.dockerproject.org/gpg
   when: is_ubuntu
 - name: Add Docker repository
-  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main'
+  apt_repository: 
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ dist_release }} stable"
+    state: present
   when: is_ubuntu
 - name: Install Docker
-  package: name=docker-engine allow_unauthenticated=yes
+  package: name=docker-ce allow_unauthenticated=yes
   when: is_ubuntu
 
 - name: Install Docker for Mac
