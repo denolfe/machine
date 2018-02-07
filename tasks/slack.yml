@@ -1,6 +1,23 @@
-- name: Install Slack
-  apt: deb=https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-1.1.5-amd64.deb
+- name: Check if slack is installed
+  command: dpkg-query -W slack-desktop
+  register: check_slack
+  failed_when: false
+  changed_when: false
   when: is_ubuntu
+
+- name: Download Slack
+  get_url: 
+    url: "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.5-amd64.deb"
+    dest: "/tmp/slack-desktop.deb"
+  when: 
+    - check_slack.rc == 1
+    - is_ubuntu
+
+- name: Install Slack
+  command: gdebi --non-interactive /tmp/slack-desktop.deb
+  when: 
+    - check_slack.rc == 1
+    - is_ubuntu
 
 - name: Install Slack
   homebrew_cask: name=slack

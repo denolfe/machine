@@ -14,9 +14,6 @@
     - include: tasks/core.yml
     - include: tasks/dotfiles.yml
 
-    #
-    # specific stuff than can be commented out
-    #
     # editors, IDEs, terminals, etc
     - include: tasks/terminal.yml
     - include: tasks/visual-studio-code.yml
@@ -33,15 +30,11 @@
 
     # tools
     - include: tasks/awscli.yml
-    - include: tasks/docker.yml
-
-    # backup
-    # - include: tasks/dropbox.yml
-    # - include: tasks/google-drive.yml
+    # - include: tasks/docker.yml
 
     # chat
     - include: tasks/slack.yml
 
     # media
     - include: tasks/spotify.yml
-    - include: tasks/vlc.yml
+    # - include: tasks/vlc.yml
