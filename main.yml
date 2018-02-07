@@ -12,6 +12,7 @@
     - include: tasks/apt.yml
     - include: tasks/homebrew.yml
     - include: tasks/core.yml
+    - include: tasks/fonts.yml
     - include: tasks/dotfiles.yml
 
     # editors, IDEs, terminals, etc

@@ -1,0 +1,10 @@
+- name: Download Powerline Fonts
+  git:
+    repo=https://github.com/powerline/fonts
+    dest=/tmp/powerline-fonts
+    version=master
+    update=no
+  when: is_ubuntu
+
+- name: Install Powerline Fonts
+  shell: /tmp/powerline-fonts/install.sh  
