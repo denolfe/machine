@@ -1,3 +1,0 @@
-- name: Install Whatsapp
-  homebrew_cask: name=whatsapp
-  when: is_osx
