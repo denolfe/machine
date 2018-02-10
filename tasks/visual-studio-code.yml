@@ -1,13 +1,26 @@
-- name: Add VisualStudio Code apt keys
-  apt_key: url=https://packages.microsoft.com/keys/microsoft.asc
-  when: is_ubuntu
-- name: Add VisualStudio Code repository
-  apt_repository: repo='deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
-  when: is_ubuntu
-- name: Install VisualStudio Code
-  package: name=code
+- name: Check if Visual Studio Code is installed
+  command: dpkg-query -W code
+  register: check_vscode
+  failed_when: false
+  changed_when: false
   when: is_ubuntu
 
-- name: Install VisualStudio Code
+- name: Download and Install Visual Studio Code (x86)
+  apt:
+    deb: https://go.microsoft.com/fwlink/?LinkID=760680
+  when:
+    - check_vscode.rc == 1
+    - ansible_userspace_architecture == 'x86'
+    - is_ubuntu
+
+- name: Download and Install Visual Studio Code (x64)
+  apt:
+    deb: https://go.microsoft.com/fwlink/?LinkID=760868
+  when:
+    - check_vscode.rc == 1
+    - ansible_userspace_architecture == 'x86_64'
+    - is_ubuntu
+
+- name: Install VisualStudio Code (macOS)
   homebrew_cask: name=visual-studio-code
   when: is_osx
