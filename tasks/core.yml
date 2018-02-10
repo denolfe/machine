@@ -41,6 +41,7 @@
     - ncdu
     - tree
     - gdebi
+    - xclip
 
 - name: Gets the zsh path
   shell: which zsh
